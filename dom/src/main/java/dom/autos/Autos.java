@@ -12,6 +12,10 @@ import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.RegEx;
 import org.apache.isis.applib.util.TitleBuffer;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 
 
@@ -21,7 +25,9 @@ import org.apache.isis.applib.util.TitleBuffer;
 		name="listado", language="JDQL",
 		value="SELECT * FROM dom.autos.Autos")
 @javax.jdo.annotations.Version(strategy=VersionStrategy.VERSION_NUMBER, column="VERSION")
+//@PersistenceCapable
 public class Autos {
+	
 	
 	public static enum Marca {
         CHEVROLET, CITROEN, FIAT, FORD, RENAULT, TOYOTA, VOLKSWAGEN ;
@@ -48,6 +54,7 @@ public class Autos {
 	// }}
 	  
 	// {{ OwnedBy (property)
+	@Persistent
 	private String ownedBy;
 
 	@Hidden
@@ -61,7 +68,7 @@ public class Autos {
 	}	    
 	  
 	// {{ Patente
-	
+	@Persistent
 	private String patente;
 	@DescribedAs("El dominio del vehiculo.")
 	@RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -75,6 +82,7 @@ public class Autos {
 	}
 	
 	// {{ Marca
+	@Persistent
 	private Marca marca;
 	//private List<Marcas> marcas=new ArrayList<Marcas>();
 	@DescribedAs("La marca del vehiculo.")
@@ -97,7 +105,8 @@ public class Autos {
 	}*/
 	
 	// {{ Modelo
-    private String modelo;
+	@Persistent
+	private String modelo;
     @DescribedAs("El modelo del vehiculo.")
     @RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
     // words, spaces and selected punctuation
@@ -112,6 +121,7 @@ public class Autos {
     // }}
     
  // {{ Año
+    @Persistent
     private int ano;
     @DescribedAs("El año del vehiculo.")
     @RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -129,6 +139,7 @@ public class Autos {
  // {{ Categoria ----> falta pq es un value object.
     
  // {{ Color
+    @Persistent
     private String color;
     @DescribedAs("El color del vehiculo.")
     @RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -144,6 +155,7 @@ public class Autos {
     // }}
     
  // {{ Kilometraje
+    @Persistent
     private int kms;
     @DescribedAs("El kilometraje del vehiculo.")
     @RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -159,6 +171,7 @@ public class Autos {
     // }}
     
  // {{ Capacidad del Baul
+    @Persistent
     private int baul;
     @DescribedAs("La capacidad del baul del vehiculo.")
     @RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -174,6 +187,7 @@ public class Autos {
     // }}
     
  // {{ Tipo de Combustible
+    @Persistent
  	private TipoCombustible combustible;
  	@DescribedAs("El tipo de combustible del vehiculo.")
  	@RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -187,6 +201,7 @@ public class Autos {
  	}	
  	
  // {{ Estado de alquiler del vehiculo
+ 	@Persistent
   	private Estado estado;
   	@DescribedAs("Señala el estado actual del vehiculo.")
   	@RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
@@ -200,6 +215,7 @@ public class Autos {
   	}	
   	
   	// {{ Fecha de Compra del vehiculo
+  	@Persistent
     private Date fechaCompra;
     @DescribedAs("Señala la fecha de compra del vehiculo.")
     @MemberOrder(sequence="10")
@@ -215,6 +231,7 @@ public class Autos {
     }
  
  // {{ Seguro del vehiculo
+    @Persistent
    	private Seguro seguro;
    	@DescribedAs("Señala el seguro del vehiculo.")
    	@RegEx(validation = "\\w[@&:\\-\\,\\.\\+ \\w]*")
