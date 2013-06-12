@@ -65,7 +65,7 @@ public class Autos {
 
 	public void setOwnedBy(final String ownedBy) {
 	    this.ownedBy = ownedBy;
-	}	    
+	}    
 	  
 	// {{ Patente
 	@Persistent
